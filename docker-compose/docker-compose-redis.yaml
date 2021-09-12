@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+
+  redis:
+    image: redis:latest
+    command: --appendonly yes
+    restart: always
+    volumes:
+      - /home/mazevedo/data/redis:/data
+    ports:
+      - 6379:6379

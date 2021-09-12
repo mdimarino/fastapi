@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+
+  redis:
+    image: redis:latest
+    command: --appendonly yes
+    restart: always
+    volumes:
+      - /home/mazevedo/data/redis:/data
+    ports:
+      - 6379:6379
+
+  ships:
+    image: dimarino/fastapi:latest
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      - REDIS_HOST=redis
+      - UVICORN_HOST=0.0.0.0
+      - UVICORN_RELOAD=False
+    depends_on:
+      - redis

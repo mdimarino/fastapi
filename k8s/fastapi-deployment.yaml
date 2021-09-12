@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+spec:
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - name: fastapi
+        image: dimarino/fastapi:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        env:
+        - name: REDIS_HOST
+          value: "redis.dimarino.local"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: UVICORN_HOST
+          value: "0.0.0.0"
+        - name: UVICORN_RELOAD
+          value: "False"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+  replicas: 3

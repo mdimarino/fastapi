@@ -1,0 +1,9 @@
+uvicorn_host="localhost"
+uvicorn_port=8000
+uvicorn_log_level="debug"
+uvicorn_workers=1
+uvicorn_reload=True
+redis_host="localhost"
+redis_port=6379
+redis_database=0
+redis_decode_responses=True
