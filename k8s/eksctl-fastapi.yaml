@@ -10,18 +10,18 @@ kubernetesNetworkConfig:
   serviceIPv4CIDR: 192.168.0.0/16
 
 vpc:
-  id: "vpc-0cbc701187d95cfbc"
+  id: "vpc-00550cf808000ca08"
   cidr: "172.16.0.0/16"
   subnets:
     private:
       us-east-1a:
-        id: "subnet-094ac991546341bf3"
+        id: "subnet-076e22180e6bb0b18"
         cidr: "172.16.1.0/24"
       us-east-1b:
-        id: "subnet-0335558dc689106da"
+        id: "subnet-0914c25a1f589822b"
         cidr: "172.16.3.0/24"
       us-east-1c:
-        id: "subnet-042c1e409e25a04e9"
+        id: "subnet-0595fe612524e9c8d"
         cidr: "172.16.5.0/24"
   autoAllocateIPv6: false
   # enable public access to endpoint and disable private access
@@ -31,9 +31,9 @@ vpc:
 
 
 managedNodeGroups:
-- name: ng-test-1-spot-micro
-  instanceType: t3.micro
-  instanceName: test-1-spot-micro
+- name: ng-fastapi-1-spot-small
+  instanceType: t3a.small
+  instanceName: fastapi-1-spot-small
   desiredCapacity: 3
   minSize: 2
   maxSize: 4
@@ -42,9 +42,9 @@ managedNodeGroups:
   privateNetworking: true
   spot: true
   volumeSize: 20
-  labels: {role: worker-micro}
+  labels: {role: worker-small}
   tags:
-      nodegroup-role: worker-micro
+      nodegroup-role: worker-small
 
 cloudWatch:
   clusterLogging:
@@ -53,14 +53,13 @@ cloudWatch:
     # supported special values: "*" and "all"
     enableTypes: ["all"]
 
-## eksctl create cluster --profile acg --config-file ./eksctl-existing-vpc.yaml
+## EXECUTE ##
 
-## eksctl delete cluster --profile acg --config-file ./eksctl-existing-vpc.yaml
+# eksctl create cluster --profile acg --config-file ./eksctl-existing-vpc.yaml
+# eksctl delete cluster --profile acg --config-file ./eksctl-existing-vpc.yaml
 
-## eksctl create cluster --profile acg --name eks-test-1 --region us-east-1 --zones us-east-1a,us-east-1b,us-east-1c --version 1.21 --nodes 3 --nodes-min 2 --nodes-max 4 --node-volume-size 20 --enable-ssm --node-private-networking --managed --spot --instance-types=t3.medium --vpc-cidr 172.30.0.0/16 --vpc-nat-mode HighlyAvailable
-
-## eksctl utils update-cluster-logging --profile acg --enable-types=all --region=us-east-1 --cluster=eks-test-1 --approve
-
-## eksctl utils update-cluster-logging --profile acg --disable-types=all --region=us-east-1 --cluster=eks-test-1 --approve
-
-## eksctl delete cluster --profile acg --name eks-test-1 --region us-east-1 --wait
+## How was command evolution ##
+# eksctl create cluster --profile acg --name eks-test-1 --region us-east-1 --zones us-east-1a,us-east-1b,us-east-1c --version 1.21 --nodes 3 --nodes-min 2 --nodes-max 4 --node-volume-size 20 --enable-ssm --node-private-networking --managed --spot --instance-types=t3.medium --vpc-cidr 172.30.0.0/16 --vpc-nat-mode HighlyAvailable
+# eksctl utils update-cluster-logging --profile acg --enable-types=all --region=us-east-1 --cluster=eks-test-1 --approve
+# eksctl utils update-cluster-logging --profile acg --disable-types=all --region=us-east-1 --cluster=eks-test-1 --approve
+# eksctl delete cluster --profile acg --name eks-test-1 --region us-east-1 --wait
