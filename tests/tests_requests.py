@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-import requests, json
+import requests
+import json
 
-BASE = "http://192.168.99.140:31640/"
+BASE = "http://127.0.0.1:8000/"
 
 data = [
     {"Name": "USS Enterprise", "Class": "Sovereign-class",     "Owner": "United Federation of Planets", "Operator": "Starfleet", "Status": "Active"},

@@ -80,7 +80,7 @@ async def shutdown_event():
 
 
 @app.get("/")
-async def root():
+async def root_call():
 
     """Handles Root Calls"""
 
