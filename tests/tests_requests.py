@@ -3,7 +3,7 @@
 import requests
 import json
 
-BASE = "http://127.0.0.1:8000/"
+BASE = "https://1jb7v0qhjk.execute-api.us-east-1.amazonaws.com/"
 
 data = [
     {"Name": "USS Enterprise", "Class": "Sovereign-class",     "Owner": "United Federation of Planets", "Operator": "Starfleet", "Status": "Active"},
@@ -24,7 +24,7 @@ data = [
 
 ]
 
-print("=== Inserting ships ==")
+print("=== Inserting ships (POST) ===")
 
 response = requests.post(BASE + "ship/" + "NCC-1701-E", json=data[0])
 print(json.dumps(response.json(), indent=2))
@@ -71,24 +71,24 @@ print(json.dumps(response.json(), indent=2))
 response = requests.post(BASE + "ship/" + "NCC-1648", json=data[14])
 print(json.dumps(response.json(), indent=2))
 
-print("=== Updating ships ==")
+print("=== Updating ships (PUT) ===")
 
 data[1] = {"Name": "USS Defiant", "Class": "Defiant-class", "Owner": "United Federation of Planets", "Operator": "Starfleet", "Status": "Destroyed"}
 
 response = requests.put(BASE + "ship/" + "NX-74205", json=data[1])
 print(json.dumps(response.json(), indent=2))
 
-print("=== Deleting ships ===")
+print("=== Deleting ships (DELETE) ===")
 
 response = requests.delete(BASE + "ship/" + "NX-74205")
 print(json.dumps(response.json(), indent=2))
 
-print("=== Recovering a ship ===")
+print("=== Recovering a ship (GET) ===")
 
 response = requests.get(BASE + "ship/" + "NCC-74656")
 print(json.dumps(response.json(), indent=2))
 
-print("=== Recovering all ships ===")
+print("=== Recovering all ships (GET) ===")
 
 response = requests.get(BASE + "ships")
 print(json.dumps(response.json(), indent=2))
