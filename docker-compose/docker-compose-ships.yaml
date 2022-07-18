@@ -12,7 +12,7 @@ services:
       - 6379:6379
 
   ships:
-    image: dimarino/fastapi:latest
+    image: fastapi:latest
     restart: always
     ports:
       - 8000:8000

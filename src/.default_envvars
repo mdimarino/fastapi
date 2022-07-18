@@ -1,3 +1,6 @@
+# estes são os valores default
+# para redefiní-los em tempo de execução declare variáveis de ambiente 
+# com o mesmo nome só que com letras maiusculas
 app_title="Star Trek Ships"
 app_description="System to manage Star Trek Ships"
 app_version="0.0.1"

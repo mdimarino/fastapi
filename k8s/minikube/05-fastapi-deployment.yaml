@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+  namespace: fastapi
+spec:
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: fastapi
+        image: dimarino/fastapi:latest
+        envFrom:
+          - configMapRef:
+              name: fastapi
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "150m"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: fastapi-port
+          containerPort: 8000
+        startupProbe:
+          httpGet:
+            path: /
+            port: fastapi-port
+          failureThreshold: 3
+          periodSeconds: 10
+          initialDelaySeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: fastapi-port
+          initialDelaySeconds: 15
+          periodSeconds: 10
+  replicas: 3

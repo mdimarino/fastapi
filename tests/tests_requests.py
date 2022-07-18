@@ -3,7 +3,9 @@
 import requests
 import json
 
-BASE = "https://1jb7v0qhjk.execute-api.us-east-1.amazonaws.com/"
+# BASE = "http://localhost:8000/"
+
+BASE = "http://fastapi.dimarino.local/"
 
 data = [
     {"Name": "USS Enterprise", "Class": "Sovereign-class",     "Owner": "United Federation of Planets", "Operator": "Starfleet", "Status": "Active"},

@@ -45,7 +45,7 @@ class Settings(BaseSettings):
     redis_decode_responses: bool
 
     class Config:
-        env_file = ".envvars"
+        env_file = ".default_envvars"
 
 settings = Settings()
 

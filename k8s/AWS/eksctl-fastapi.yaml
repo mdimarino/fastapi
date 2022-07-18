@@ -27,7 +27,7 @@ vpc:
   # enable public access to endpoint and disable private access
   clusterEndpoints:
     publicAccess: true
-    privateAccess: false
+    privateAccess: true
 
 
 managedNodeGroups:
@@ -37,8 +37,6 @@ managedNodeGroups:
   desiredCapacity: 3
   minSize: 2
   maxSize: 4
-  ssh:
-    enableSsm: true
   privateNetworking: true
   spot: true
   volumeSize: 20
