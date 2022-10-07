@@ -15,7 +15,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: fastapi
-        image: dimarino/fastapi:latest
+        image: fastapi:latest
         envFrom:
           - configMapRef:
               name: fastapi

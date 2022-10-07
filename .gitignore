@@ -107,6 +107,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.venv-tests
 env/
 venv/
 ENV/
@@ -143,3 +144,5 @@ cython_debug/
 
 # Local History for Visual Studio Code
 .history/
+
+docker-compose/data

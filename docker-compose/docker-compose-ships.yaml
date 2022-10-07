@@ -7,7 +7,7 @@ services:
     command: --appendonly yes
     restart: always
     volumes:
-      - /home/mazevedo/data/redis:/data
+      - ~/git/fastapi/docker-compose/data/redis:/data
     ports:
       - 6379:6379
 

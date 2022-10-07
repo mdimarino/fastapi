@@ -3,7 +3,7 @@
 # com o mesmo nome só que com letras maiusculas
 app_title="Star Trek Ships"
 app_description="System to manage Star Trek Ships"
-app_version="0.0.1"
+app_version="0.1.0"
 app_contact_author="Marcello Di Marino Azevedo"
 app_contact_email="marcello@di.marino.nom.br"
 uvicorn_host="localhost"

@@ -1,6 +1,16 @@
 APPLICATION=fastapi
 VERSION=0.1.0
 
+## venv: cria o virtual environment
+venv: 
+		@echo "Cria virtual environment"
+		test -d .venv || python3 -m venv .venv
+
+## deps: instala dependências
+deps:
+		@echo "Instala dependências"
+		bash -c "source .venv/bin/activate && pip install -r requirements.txt"
+
 ## image: cria localmente a imagem docker
 image:
 		@echo "Cria imagem Docker"
@@ -15,8 +25,5 @@ clean:
 
 ## help: exibe esta mensagem de ajuda
 help:
-		@echo
-		@echo "ATENÇÃO!!! Defina as variáveis de ambiente AWS_PROFILE e AWS_DEFAULT_REGION antes de executar este Makefile"
-		@echo
 		@echo "Uso:"
 		@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'

@@ -67,16 +67,16 @@ r = redis.Redis(
 )
 
 
-@app.on_event("startup")
-async def startup_event():
-    custom_fig = Figlet(font="banner3")
-    print(custom_fig.renderText(settings.app_title))
+# @app.on_event("startup")
+# async def startup_event():
+#     custom_fig = Figlet(font="banner3")
+#     print(custom_fig.renderText(settings.app_title))
 
 
-@app.on_event("shutdown")
-async def shutdown_event():
-    custom_fig = Figlet(font="banner3")
-    print(custom_fig.renderText("shutdown"))
+# @app.on_event("shutdown")
+# async def shutdown_event():
+#     custom_fig = Figlet(font="banner3")
+#     print(custom_fig.renderText("shutdown"))
 
 
 @app.get("/")
@@ -163,9 +163,12 @@ async def delete_ship(ship_registry: str):
 if __name__ == "__main__":
 
     log_config = uvicorn.config.LOGGING_CONFIG
-
-    log_config["formatters"]["default"]["fmt"] = "[%(asctime)s] %(levelprefix)s %(message)s"
-    log_config["formatters"]["access"]["fmt"] = "[%(asctime)s] %(levelprefix)s %(client_addr)s - \"%(request_line)s\" %(status_code)s"
+    
+    # log_config["formatters"]["default"]["fmt"] = "[%(asctime)s] %(levelprefix)s %(message)s"
+    # log_config["formatters"]["access"]["fmt"] = "[%(asctime)s] %(levelprefix)s %(client_addr)s - \"%(request_line)s\" %(status_code)s"
+    
+    log_config["formatters"]["default"]["fmt"] = "{\"asctime\": \"%(asctime)s\",\"levelprefix\": \"%(levelprefix)s\",\"message\": \"%(message)s\"}"
+    log_config["formatters"]["access"]["fmt"]  = "{\"asctime\": \"%(asctime)s\",\"levelprefix\": \"%(levelprefix)s\",\"client_addr\": \"%(client_addr)s\",\"request_line\": \"%(request_line)s\",\"status_code\": \"%(status_code)s\"}"
 
     uvicorn.run(
         "main:app", 
