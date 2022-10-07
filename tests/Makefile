@@ -4,7 +4,7 @@ venv:
 		test -d .venv || python3 -m venv .venv-tests
 
 ## deps: instala dependências
-deps:
+deps: venv
 		@echo "Instala dependências"
 		bash -c "source .venv-tests/bin/activate && pip install -r requirements.txt"
 
